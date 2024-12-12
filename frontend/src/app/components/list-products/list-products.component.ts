@@ -9,8 +9,8 @@ import { Product } from '../../interfaces/product';
 export class ListProductsComponent implements OnInit{
 
   listProducts: Product[]=[
-    {name: "Coca cola", description: "Bedida con azucar", price:4, stock:200},
-    {name: "Corona", description: "Bedida con alcohol", price:5, stock:300},
+    {id:1, name: "Coca cola", description: "Bedida con azucar", price:4, stock:200},
+    {id:2, name: "Corona", description: "Bedida con alcohol", price:5, stock:300},
 
   ]
   constructor(){}
