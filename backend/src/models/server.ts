@@ -1,4 +1,5 @@
-import express, { Application } from 'express';
+import express, { Application, Request, Response } from 'express';
+import routeProduct from '../routes/product';
 
 class Server{
 
@@ -7,14 +8,30 @@ class Server{
 
     constructor(){
         this.app= express();
-        this.port= '3001';
+        this.port= process.env.PORT || '3001' ;
         this.listen();
+        //esta funcion debe ser invocada antes de los routes para que funcione:
+        this.middleware();
+        this.routes();
     }
 
     listen(){
         this.app.listen(this.port, ()=>{
             console.log(`The application is running on port ${this.port}`);
         })
+    }
+
+    routes(){
+        this.app.get('/', (req: Request, res: Response )=>{
+            res.json({
+                message: 'API is working'
+            });
+        })
+        this.app.use('/api/products', routeProduct);
+    }
+
+    middleware(){
+        this.app.use(express.json());
     }
 }
 
